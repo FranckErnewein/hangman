@@ -1,28 +1,49 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { compose, lifecycle } from "recompose";
+import { loadData, pickWord } from "./actions";
+import Inputs from "./Inputs";
+import GuessLetter from "./GuessLetter";
+import Hangman from "./Hangman";
+import "./App.css";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+function App({ dictonary, pickWord, word, fail, win }) {
+  return (
+    <div className="App">
+      <h1>Hangman</h1>
+      <button onClick={pickWord}>START NEW GAME</button>
+      {fail && <h1>LOOOOOOOOSER: {word}</h1>}
+      {win && <h1>WINNNNNER!!!</h1>}
+      {word && <Inputs />}
+      {word && <GuessLetter />}
+      {word && <Hangman />}
+    </div>
+  );
 }
 
-export default App;
+export default compose(
+  connect(
+    state => ({
+      dictonary: state.dictonary,
+      word: state.word,
+      fail: state.fail,
+      win: state.win
+    }),
+    dispatch =>
+      bindActionCreators(
+        {
+          loadData,
+          pickWord
+        },
+        dispatch
+      )
+  ),
+  lifecycle({
+    componentDidMount() {
+      this.props.loadData().then(() => {
+        this.props.pickWord();
+      });
+    }
+  })
+)(App);
