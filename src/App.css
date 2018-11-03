@@ -30,6 +30,17 @@
   padding: 2px;
   font-size: 20px;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2;
+}
+.Hangman span:hover{
+  transform: scale(1.2)
+}
+.Hangman span.normal{
+  color: #ccc; 
+}
+.Hangman span.valid{
+  color: green; 
 }
 
 .Hangman pre{

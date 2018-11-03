@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { compose, lifecycle } from "recompose";
 import { loadData, pickWord } from "./actions";
+import { isLost, isWon } from "./selectors";
 import Inputs from "./Inputs";
 import GuessLetter from "./GuessLetter";
 import Hangman from "./Hangman";
@@ -27,8 +28,8 @@ export default compose(
     state => ({
       dictonary: state.dictonary,
       word: state.word,
-      fail: state.fail,
-      win: state.win
+      fail: isLost(state),
+      win: isWon(state)
     }),
     dispatch =>
       bindActionCreators(

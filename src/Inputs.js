@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { getGuessWord } from "./selectors";
 
 function Inputs({ word }) {
   return (
@@ -12,5 +13,5 @@ function Inputs({ word }) {
 }
 
 export default connect(state => ({
-  word: state.guessWord
+  word: getGuessWord(state)
 }))(Inputs);

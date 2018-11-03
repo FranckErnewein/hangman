@@ -28,10 +28,7 @@ export default compose(
     keyUp: ({ tryLetter, letters }) => e => {
       const { value } = e.target;
       if (value) {
-        const char = value.toLowerCase();
-        if (!letters[char]) {
-          tryLetter(char);
-        }
+        tryLetter(value);
         e.target.value = "";
       }
     }

@@ -26,8 +26,15 @@ export function pickWord() {
 }
 
 export function tryLetter(letter) {
-  return {
-    type: TRY_LETTER,
-    letter
+  return (dispatch, getState) => {
+    const { letters } = getState();
+    if (!letter) return;
+    const char = letter.toLowerCase();
+    if (!letters[char]) {
+      dispatch({
+        type: TRY_LETTER,
+        letter
+      });
+    }
   };
 }
