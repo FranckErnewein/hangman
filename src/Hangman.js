@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { MAX_ERROR } from "./const";
 import ascii from "./ascii";
 
 function Hangman({ error, letters }) {
@@ -8,7 +9,7 @@ function Hangman({ error, letters }) {
       {error > 0 ? (
         <div>
           Error
-          {error > 1 ? "s" : ""}: {error}
+          {error > 1 ? "s" : ""}: {error} / {MAX_ERROR}
           <div>
             {Object.keys(letters)
               .sort()

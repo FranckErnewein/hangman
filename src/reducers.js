@@ -1,6 +1,6 @@
 import { DICTONARY_LOADED, PICK_WORD, TRY_LETTER } from "./actions";
+import { MAX_ERROR } from "./const";
 
-const MAX_ERROR = 10;
 
 const intialState = { fail: false, win: false, error: 0, letters: {} };
 
