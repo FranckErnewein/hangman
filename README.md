@@ -26,4 +26,4 @@ then visit [http://localhost:3000](http://localhost:3000)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Made with love with Valérie Frison ❤
+Made with love with Val ❤
