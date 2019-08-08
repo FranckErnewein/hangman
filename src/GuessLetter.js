@@ -2,7 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { compose, withHandlers } from "recompose";
+import { createStructuredSelector } from "reselect";
 import { tryLetter } from "./actions";
+import { getLetters } from "./selectors";
 
 function GuessLetter({ keyUp }) {
   return (
@@ -15,7 +17,10 @@ function GuessLetter({ keyUp }) {
 
 export default compose(
   connect(
-    ({ letters }) => ({ letters }),
+    state =>
+      createStructuredSelector({
+        letters: getLetters
+      }),
     dispatch =>
       bindActionCreators(
         {
